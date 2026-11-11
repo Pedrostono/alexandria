@@ -155,10 +155,9 @@ service cloud.firestore {
 
 | Tela de Login | Tela de Cadastro | Estante (Home) | Formulário de Livro |
 | :---: | :---: | :---: | :---: |
-| *(Adicione a imagem aqui)* | *(Adicione a imagem aqui)* | *(Adicione a imagem aqui)* | *(Adicione a imagem aqui)* |
-
+| <img width="250" alt="Tela de Login" src="https://github.com/user-attachments/assets/e05498ad-2688-48b0-b012-95d30ebe875e" /> | <img width="250" alt="Tela de Cadastro" src="https://github.com/user-attachments/assets/b761abf6-c212-4c6e-9ae4-51307d8bb21f" /> | <img width="250" alt="Estante" src="https://github.com/user-attachments/assets/2799c55a-004f-411d-b54b-0ee53ed63c94" /> | <img width="250" alt="Formulário" src="https://github.com/user-attachments/assets/db4687b6-8e4d-42ff-9795-8e3ff6b19e4e" /> |
 ---
 
 ## 👨‍💻 Autor
 
-Desenvolvido para fins acadêmicos. Projeto **Alexandria - Estante de Leitura**.
+Desenvolvido para fins acadêmicos. Projeto **Alexandria - Estante de Leitura** por Pedro Henrique Martins Silva.
