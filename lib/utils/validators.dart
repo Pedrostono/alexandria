@@ -20,6 +20,8 @@ class Validators {
     return null;
   }
 
+
+
   /// Valida formato de e-mail
   static String? email(String? value) {
     final req = required(value, 'Informe o e-mail.');
