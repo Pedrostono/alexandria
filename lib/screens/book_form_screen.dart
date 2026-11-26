@@ -26,6 +26,7 @@ class _BookFormScreenState extends State<BookFormScreen> {
   late TextEditingController _currentPageController;
 
   late BookStatus _status;
+  String? _genre;
   int? _rating;
   bool _isLoading = false;
 
@@ -45,6 +46,10 @@ class _BookFormScreenState extends State<BookFormScreen> {
 
     _status = b?.status ?? BookStatus.wantToRead;
     _rating = b?.rating;
+
+    // Gêneros antigos/desconhecidos (ou vazios) ficam sem seleção no dropdown
+    final savedGenre = b?.genre ?? '';
+    _genre = savedGenre.isNotEmpty ? savedGenre : null;
   }
 
   @override
@@ -88,6 +93,7 @@ class _BookFormScreenState extends State<BookFormScreen> {
       id: widget.book?.id,
       title: _titleController.text.trim(),
       author: _authorController.text.trim(),
+      genre: _genre ?? '',
       status: _status,
       totalPages: totalPages,
       currentPage: currentPage,
@@ -229,6 +235,35 @@ class _BookFormScreenState extends State<BookFormScreen> {
                 ),
                 validator: (val) =>
                     Validators.minLength(val, 2, 'Informe o autor do livro.'),
+              ),
+              const SizedBox(height: 16),
+              DropdownButtonFormField<String>(
+                value: _genre,
+                isExpanded: true,
+                decoration: const InputDecoration(
+                  labelText: 'Gênero',
+                  prefixIcon: Icon(Icons.category_outlined),
+                  border: OutlineInputBorder(),
+                ),
+                items: [
+                  // Mantém um gênero salvo que não esteja na lista atual
+                  if (_genre != null && !bookGenres.contains(_genre))
+                    DropdownMenuItem<String>(
+                      value: _genre,
+                      child: Text(_genre!),
+                    ),
+                  ...bookGenres.map((genre) {
+                    return DropdownMenuItem<String>(
+                      value: genre,
+                      child: Text(genre),
+                    );
+                  }),
+                ],
+                onChanged: (newGenre) {
+                  setState(() {
+                    _genre = newGenre;
+                  });
+                },
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<BookStatus>(

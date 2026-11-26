@@ -36,6 +36,32 @@ enum BookStatus {
   }
 }
 
+/// Gêneros literários disponíveis para seleção no formulário
+const List<String> bookGenres = [
+  'Ficção científica',
+  'Fantasia',
+  'Romance',
+  'Terror',
+  'Suspense',
+  'Mistério',
+  'Aventura',
+  'Drama',
+  'Comédia',
+  'Distopia',
+  'Ficção histórica',
+  'Biografia',
+  'Autoajuda',
+  'Negócios',
+  'História',
+  'Filosofia',
+  'Ciência',
+  'Poesia',
+  'HQ / Mangá',
+  'Infantojuvenil',
+  'Não ficção',
+  'Outro',
+];
+
 /// Modelo representando um livro da estante pessoal
 class Book {
   final String? id;
@@ -47,6 +73,7 @@ class Book {
   final int? rating;
   final DateTime? finishedAt;
   final DateTime createdAt;
+  final String genre;
 
   Book({
     this.id,
@@ -55,6 +82,7 @@ class Book {
     required this.status,
     required this.totalPages,
     required this.currentPage,
+    required this.genre,
     this.rating,
     this.finishedAt,
     DateTime? createdAt,
@@ -81,6 +109,7 @@ class Book {
       totalPages: (data['totalPages'] as num?)?.toInt() ?? 0,
       currentPage: (data['currentPage'] as num?)?.toInt() ?? 0,
       rating: (data['rating'] as num?)?.toInt(),
+      genre: data['genre'] as String? ?? '',
       finishedAt: finishedAtRaw is Timestamp ? finishedAtRaw.toDate() : null,
       createdAt: createdAtRaw is Timestamp ? createdAtRaw.toDate() : DateTime.now(),
     );
@@ -109,6 +138,7 @@ class Book {
     return {
       'title': title,
       'author': author,
+      'genre': genre,
       'status': status.toStorageString(),
       'totalPages': totalPages,
       'currentPage': finalCurrentPage,
@@ -124,6 +154,7 @@ class Book {
     String? title,
     String? author,
     BookStatus? status,
+    String? genre,
     int? totalPages,
     int? currentPage,
     int? rating,
@@ -135,6 +166,7 @@ class Book {
       title: title ?? this.title,
       author: author ?? this.author,
       status: status ?? this.status,
+      genre: genre ?? this.genre,
       totalPages: totalPages ?? this.totalPages,
       currentPage: currentPage ?? this.currentPage,
       rating: rating ?? this.rating,
